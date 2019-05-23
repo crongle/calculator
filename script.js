@@ -11,7 +11,6 @@ let i = 0;
 
 function operate() { // Performs full calculation on OaO stack
 
-  console.log(oaoStack)
   joinNumbers();
 
   for (n==1; n<i; n++) {
@@ -69,18 +68,19 @@ function joinNumbers() { // Join together concurrent digits in oaoStack to form 
   for (x==0; x<=z; x++) {
     z = oaoStack.length;
     console.log(x, oaoStack[x] , z , oaoStack);
-   if (numCheck.test(oaoStack[x])) { //Check if a numerical digit or an operator
-     sum += oaoStack[x].toString();
-     digitCount += 1;
-   }
-   else {
+
+    if (numCheck.test(oaoStack[x])) { //Check if a numerical digit or an operator
+      sum += oaoStack[x].toString();
+      digitCount += 1;
+    }
+    else {
       if (digitCount>1) { // If a numerical operator then finalise the digits into a multiple digit number and continue
         oaoStack[x-1] = parseInt(sum);
         oaoStack.splice((x-digitCount), digitCount-1);
-        x--;
-      }
-      sum = "";
-      digitCount = 0;
+        x = x - (digitCount-1); // Adjusts stepper for how many digits have been combined when comparing to array length
+    }
+    sum = "";
+    digitCount = 0;
    }
   }
 }
