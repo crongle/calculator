@@ -7,11 +7,9 @@ let i = 0;
 
 // MAIN FUNCTION
 
-function main() {
-
+function operate() { // Performs full calculation on OaO stack
+  multiply(1);
 }
-
-
 
 // Main 4 arithmatic operators
 
@@ -40,10 +38,6 @@ function subtract() { //find number before and after add in OaO array and subtra
 function addToStack(buttonInput) {
   oaoStack[i] = buttonInput;
   i+= 1;
-}
-
-function operate() { // Performs full calculation on OaO stack
-
 }
 
 function clear() { // Clears display and current OaO stack

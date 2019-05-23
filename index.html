@@ -19,27 +19,27 @@
     <div class="display">display</div>
 
     <div class="clear operator" onclick="addToStack(&quot;CLEAR&quot;)">C</div>
-    <div class="divide operator">/</div>
-    <div class="multiply  operator">X</div>
-    <div class="backspace  operator">BACK</div>
+    <div class="divide operator" onclick="addToStack(&quot;DIVIDE&quot;)">/</div>
+    <div class="multiply  operator" onclick="addToStack(&quot;MULTIPLY&quot;)">X</div>
+    <div class="backspace  operator" onclick="addToStack(&quot;BACKSPACE&quot;)">BACK</div>
 
     <div class="seven number" onclick="addToStack(7)">7</div>
-    <div class="eight number">8</div>
-    <div class="nine number">9</div>
-    <div class="add  operator">+</div>
+    <div class="eight number" onclick="addToStack(8)">8</div>
+    <div class="nine number" onclick="addToStack(9)">9</div>
+    <div class="add  operator" onclick="addToStack(&quot;ADD&quot;)">+</div>
 
-    <div class="four number">4</div>
-    <div class="five number">5</div>
-    <div class="six number">6</div>
-    <div class="subtract  operator">-</div>
+    <div class="four number" onclick="addToStack(4)">4</div>
+    <div class="five number" onclick="addToStack(5)">5</div>
+    <div class="six number" onclick="addToStack(6)">6</div>
+    <div class="subtract  operator" onclick="addToStack(&quot;SUBTRACT&quot;)">-</div>
 
-    <div class="one number">1</div>
-    <div class="two number">2</div>
-    <div class="three number">3</div>
-    <div class="equals  operator">=</div>
+    <div class="one number" onclick="addToStack(1)">1</div>
+    <div class="two number" onclick="addToStack(2)">2</div>
+    <div class="three number" onclick="addToStack(3)">3</div>
+    <div class="equals  operator" onclick="operate()">=</div>
 
     <div class="blank operator">BLANK</div>
-    <div class="zero number">0</div>
+    <div class="zero number" onclick="addToStack(0)">0</div>
     <div class="decimal  operator">.</div>
 
   </div>
