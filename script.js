@@ -1,7 +1,6 @@
 // variables
 
 let oaoStack = [];
-let numCheck = /[0-9]/;
 let i = 0;
     n = 0;
     x = 0;
@@ -12,12 +11,16 @@ let i = 0;
 
 function operate() { // Performs full calculation on OaO stack
 
+  console.log(oaoStack)
   joinNumbers();
 
   for (n==1; n<i; n++) {
     switch (oaoStack[n]) {
-      case "MULTIPLY": multiply(n); break;
       case "DIVIDE": divide(n); break;
+      case "MULTIPLY": multiply(n); break;
+      case "ADD": add(n); break;
+      case "SUBTRACT": subtract(n); break;
+      default:
     }
   }
 }
@@ -37,12 +40,16 @@ function multiply(index) { //find number before and after add in OaO array and m
   oaoStack.splice((index-1), 2);
 }
 
-function add() { //find number before and after add in OaO array and add them and shrink array 3-1
-
+function add(index) { //find number before and after add in OaO array and add them and shrink array 3-1
+  let answer = oaoStack[index-1] + oaoStack[index+1];
+  oaoStack[index+1] = answer;
+  oaoStack.splice((index-1), 2);
 }
 
-function subtract() { //find number before and after add in OaO array and subtract them and shrink array 3-1
-
+function subtract(index) { //find number before and after add in OaO array and subtract them and shrink array 3-1
+  let answer = oaoStack[index-1] - oaoStack[index+1];
+  oaoStack[index+1] = answer;
+  oaoStack.splice((index-1), 2);
 }
 
 
@@ -56,15 +63,24 @@ function addToStack(buttonInput) { // Add value of button pressed into the OaO a
 function joinNumbers() { // Join together concurrent digits in oaoStack to form actual number
   let sum = "";
   let digitCount = 0;
+  let numCheck = /[0-9]/;
+  let z = oaoStack.length;
 
-  for (x==0; x<i; x++) {
-   if (numCheck.test(oaoStack[x])) {
+  for (x==0; x<=z; x++) {
+    z = oaoStack.length;
+    console.log(x, oaoStack[x] , z , oaoStack);
+   if (numCheck.test(oaoStack[x])) { //Check if a numerical digit or an operator
      sum += oaoStack[x].toString();
      digitCount += 1;
-   } else {
-     oaoStack[x-1] = parseInt(sum);
-     oaoStack.splice((x-digitCount), digitCount-1)
-     x++; // Prevent looping over the same values already joined
+   }
+   else {
+      if (digitCount>1) { // If a numerical operator then finalise the digits into a multiple digit number and continue
+        oaoStack[x-1] = parseInt(sum);
+        oaoStack.splice((x-digitCount), digitCount-1);
+        x--;
+      }
+      sum = "";
+      digitCount = 0;
    }
   }
 }
