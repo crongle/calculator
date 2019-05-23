@@ -2,13 +2,18 @@
 
 let oaoStack = [];
 let i = 0;
+    n = 1;
 
 
 
 // MAIN FUNCTION
 
 function operate() { // Performs full calculation on OaO stack
-  multiply(1);
+  for (n==1; n<i; n++) {
+    switch (oaoStack[n]) {
+      case "MULTIPLY": multiply(n); break;
+    }
+  }
 }
 
 // Main 4 arithmatic operators
