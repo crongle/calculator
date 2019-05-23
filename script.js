@@ -57,6 +57,7 @@ function subtract(index) { //find number before and after add in OaO array and s
 function addToStack(buttonInput) { // Add value of button pressed into the OaO array
   oaoStack[i] = buttonInput;
   i+= 1;
+  updateDisplay(i-1);
 }
 
 function joinNumbers() { // Join together concurrent digits in oaoStack to form actual number
@@ -101,6 +102,28 @@ function decimalise() { // Takes numbers and decimal between operators and combi
 
 // Display functions
 
-function updateDisplay() { //Called on any calculation update to output current OaO array
+function updateDisplay(isItIntial) { //Called on any calculation update to output current OaO array
+  const container = document.querySelector(".display"); // Locating where the out put is going to be on the page
+  let output = "";
 
+  console.log(isItIntial);
+
+  displayOutput = document.createElement("p");
+  displayOutput.classList.add("child");
+  displayOutput.textContent = output;
+  container.appendChild(displayOutput);
+
+  let child = document.querySelector(".child");
+  child.parentNode.removeChild(child);
+
+  if (isItIntial != 0) {
+    let child = document.querySelector(".child");
+    child.parentNode.removeChild(child);
+  }
+
+  output = oaoStack;
+
+  displayOutput = document.createElement('p');
+  displayOutput.textContent = output;
+  container.appendChild(displayOutput);
 }
