@@ -1,6 +1,88 @@
+/*--------------GENERAL------------------------------------------------------*/
+
 * {
   padding: 0;
   border: 0;
   margin: 0;
   font-family: arial, sans-serif;
+}
+
+html {
+  height: 100%;
+}
+
+body {
+  min-height: 100%;
+  display: grid;
+  grid-auto-rows: auto 1fr auto;
+}
+
+/*--------------HEADER-------------------------------------------------------*/
+.header {
+  text-align: center;
+}
+
+h1.main-heading {
+  font-weight:1;
+  color: rgba(138, 138, 40, 0.7);
+}
+
+
+/*---------------BODY--------------------------------------------------------*/
+
+.calc-wrapper {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+
+  width: 15%;
+  height: 60%;
+  display: grid;
+  grid-template-rows: 2fr repeat(5, 1fr);
+  grid-template-columns: repeat(4, 1fr);
+  grid-gap: 1px;
+  padding: 1px;
+}
+
+.display {
+  display: flex;
+  justify-content: flex-end;
+  align-items: flex-end;
+  grid-column: 1 / 5;
+  background-color: blue;
+}
+
+.operator {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: green;
+}
+
+.number {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: pink;
+}
+
+.equals {
+  grid-row: 5 / 7;
+  grid-column: 4 / 5;
+}
+
+/*--------------FOOTER-------------------------------------------------------*/
+.footer {
+  grid-row-start: 3;
+  grid-row-end: 4;
+  text-align: center;
+  font-size: 0.5em;
+  color: rgba(138, 138, 40, 0.3);
+  padding-bottom: 10px;
+}
+
+.github-link {
+  text-decoration: none;
+  color: rgba(138, 138, 40, 0.4);
 }
