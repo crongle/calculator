@@ -104,26 +104,23 @@ function decimalise() { // Takes numbers and decimal between operators and combi
 
 function updateDisplay(isItIntial) { //Called on any calculation update to output current OaO array
   const container = document.querySelector(".display"); // Locating where the out put is going to be on the page
-  let output = "";
+  let child = document.getElementsByClassName("child");
+  let output = oaoStack;
 
-  console.log(isItIntial);
-
-  displayOutput = document.createElement("p");
-  displayOutput.classList.add("child");
-  displayOutput.textContent = output;
-  container.appendChild(displayOutput);
-
-  let child = document.querySelector(".child");
-  child.parentNode.removeChild(child);
-
-  if (isItIntial != 0) {
-    let child = document.querySelector(".child");
-    child.parentNode.removeChild(child);
+  if (isItIntial == 0) { // Avoids attempting to remove a DOM element that doesn't exist yet
+    displayOutput = document.createElement("p");
+    displayOutput.classList.add("child");
+    displayOutput.textContent = output;
+    container.appendChild(displayOutput);
   }
+  else {
+    while(child[0]) { // Removes the previous display output
+      child[0].parentNode.removeChild(child[0]);
+    }
 
-  output = oaoStack;
-
-  displayOutput = document.createElement('p');
-  displayOutput.textContent = output;
-  container.appendChild(displayOutput);
+    displayOutput = document.createElement('p'); // Displays the current output
+    displayOutput.textContent = output;
+    displayOutput.classList.add("child");
+    container.appendChild(displayOutput);
+  }
 }
