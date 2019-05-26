@@ -1,8 +1,7 @@
 // variables
 
 let oaoStack = [];
-let i = 0;
-    n = 0;
+let n = 0;
     x = 0;
 
 
@@ -13,7 +12,7 @@ function operate() { // Performs full calculation on OaO stack
 
   joinNumbers();
 
-  for (n==1; n<i; n++) {
+  for (n==1; n<=oaoStack.length; n++) {
     switch (oaoStack[n]) {
       case "DIVIDE": divide(n); break;
       case "MULTIPLY": multiply(n); break;
@@ -22,6 +21,7 @@ function operate() { // Performs full calculation on OaO stack
       default:
     }
   }
+  n = 0;
 }
 
 // Main 4 arithmatic operators
@@ -31,33 +31,36 @@ function divide(index) { //find number before and after add in OaO array and div
   let answer = oaoStack[index-1] / oaoStack[index+1];
   oaoStack[index+1] = answer;
   oaoStack.splice((index-1), 2);
+  updateDisplay(1);
 }
 
 function multiply(index) { //find number before and after add in OaO array and multiply them and shrink array 3-1
   let answer = oaoStack[index-1] * oaoStack[index+1];
   oaoStack[index+1] = answer;
   oaoStack.splice((index-1), 2);
+  updateDisplay(1);
 }
 
 function add(index) { //find number before and after add in OaO array and add them and shrink array 3-1
   let answer = oaoStack[index-1] + oaoStack[index+1];
   oaoStack[index+1] = answer;
   oaoStack.splice((index-1), 2);
+  updateDisplay(1);
 }
 
 function subtract(index) { //find number before and after add in OaO array and subtract them and shrink array 3-1
   let answer = oaoStack[index-1] - oaoStack[index+1];
   oaoStack[index+1] = answer;
   oaoStack.splice((index-1), 2);
+  updateDisplay(1);
 }
 
 
 // Other calculation operators
 
 function addToStack(buttonInput) { // Add value of button pressed into the OaO array
-  oaoStack[i] = buttonInput;
-  i+= 1;
-  updateDisplay(i-1);
+  oaoStack[oaoStack.length] = buttonInput;
+  updateDisplay(oaoStack.length);
 }
 
 function joinNumbers() { // Join together concurrent digits in oaoStack to form actual number
@@ -68,7 +71,6 @@ function joinNumbers() { // Join together concurrent digits in oaoStack to form 
 
   for (x==0; x<=z; x++) {
     z = oaoStack.length;
-    console.log(x, oaoStack[x] , z , oaoStack);
 
     if (numCheck.test(oaoStack[x])) { //Check if a numerical digit or an operator
       sum += oaoStack[x].toString();
@@ -84,15 +86,20 @@ function joinNumbers() { // Join together concurrent digits in oaoStack to form 
     digitCount = 0;
    }
   }
+  x = 0;
 }
 
 
-function clear() { // Clears display and current OaO stack
-
+function clearStack() { // Clears display and current OaO stack
+  console.log(oaoStack);
+  oaoStack.splice(0, oaoStack.length);
+  updateDisplay(1);
 }
 
 function backspace() { // Removes previous number key or operator entry from display and OaO stack
-
+  console.log(oaoStack);
+  oaoStack.splice((oaoStack.length-1), 2 );
+  updateDisplay(1);
 }
 
 function decimalise() { // Takes numbers and decimal between operators and combines to floating point number in stack
@@ -105,7 +112,9 @@ function decimalise() { // Takes numbers and decimal between operators and combi
 function updateDisplay(isItIntial) { //Called on any calculation update to output current OaO array
   const container = document.querySelector(".display"); // Locating where the out put is going to be on the page
   let child = document.getElementsByClassName("child");
-  let output = oaoStack;
+
+  //let oaoStackFiltered = oaoStack.filter(test => Boolean(test));
+  let output = oaoStack.join("");
 
   if (isItIntial == 0) { // Avoids attempting to remove a DOM element that doesn't exist yet
     displayOutput = document.createElement("p");
