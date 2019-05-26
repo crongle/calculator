@@ -14,10 +14,10 @@ function operate() { // Performs full calculation on OaO stack
 
   for (n==1; n<=oaoStack.length; n++) {
     switch (oaoStack[n]) {
-      case "DIVIDE": divide(n); break;
-      case "MULTIPLY": multiply(n); break;
-      case "ADD": add(n); break;
-      case "SUBTRACT": subtract(n); break;
+      case "/": divide(n); break;
+      case "X": multiply(n); break;
+      case "+": add(n); break;
+      case "-": subtract(n); break;
       default:
     }
   }
@@ -113,7 +113,6 @@ function updateDisplay(isItIntial) { //Called on any calculation update to outpu
   const container = document.querySelector(".display"); // Locating where the out put is going to be on the page
   let child = document.getElementsByClassName("child");
 
-  //let oaoStackFiltered = oaoStack.filter(test => Boolean(test));
   let output = oaoStack.join("");
 
   if (isItIntial == 0) { // Avoids attempting to remove a DOM element that doesn't exist yet

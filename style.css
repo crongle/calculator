@@ -47,6 +47,7 @@ h1.main-heading {
 }
 
 .display {
+  font-size: 2em;
   display: flex;
   justify-content: flex-end;
   align-items: flex-end;
