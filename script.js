@@ -72,13 +72,13 @@ function joinNumbers() { // Join together concurrent digits in oaoStack to form 
   for (x==0; x<=z; x++) {
     z = oaoStack.length;
 
-    if (numCheck.test(oaoStack[x])) { //Check if a numerical digit or an operator
+    if (numCheck.test(oaoStack[x]) || oaoStack[x] == ".") { //Check if a numerical digit or decimal point
       sum += oaoStack[x].toString();
       digitCount += 1;
     }
     else {
-      if (digitCount>1) { // If a numerical operator then finalise the digits into a multiple digit number and continue
-        oaoStack[x-1] = parseInt(sum);
+      if (digitCount>1) { // If a numerical operator then finalise the digits into a multiple digit number and continues
+        oaoStack[x-1] = parseFloat(sum);
         oaoStack.splice((x-digitCount), digitCount-1);
         x = x - (digitCount-1); // Adjusts stepper for how many digits have been combined when comparing to array length
     }
