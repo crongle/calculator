@@ -1,37 +1,37 @@
 // variables
 
 let oaoStack = [];
-let n = 0;
+let n = 1;
     x = 0;
-
-
 
 // MAIN FUNCTION
 
 function operate() { // Performs full calculation on OaO stack
-
   joinNumbers();
+  let i = 1;
 
-  for (n==1; n<=oaoStack.length; n++) {
-    switch (oaoStack[n]) {
-      case "/": divide(n); break;
-      case "X": multiply(n); break;
-      case "+": add(n); break;
-      case "-": subtract(n); break;
-      default:
-    }
-  }
-  n = 0;
+  for  (i==1; i<=oaoStack.length; i++) { if (oaoStack[i] == "/") {divide(i);}} i = 1; // Makes BIDMAS rule followed when calculating
+  for  (i==1; i<=oaoStack.length; i++) { if (oaoStack[i] == "X") {multiply(i);}} i = 1;
+  for  (i==1; i<=oaoStack.length; i++) { if (oaoStack[i] == "+") {add(i);}} i = 1;
+  for  (i==1; i<=oaoStack.length; i++) { if (oaoStack[i] == "-") {subtract(i);}} i = 1;
+
 }
 
 // Main 4 arithmatic operators
 
 function divide(index) { //find number before and after add in OaO array and divide first by last and shrink array 3-1
-  // add error message for diving by 0
-  let answer = oaoStack[index-1] / oaoStack[index+1];
-  oaoStack[index+1] = answer;
-  oaoStack.splice((index-1), 2);
-  updateDisplay(1);
+  if (oaoStack[index+1]==0) {
+    clearStack();
+    oaoStack[0] = "Impossible!";
+    updateDisplay(1);
+    oaoStack.splice(0, oaoStack.length);
+  }
+  else {
+    let answer = oaoStack[index-1] / oaoStack[index+1];
+    oaoStack[index+1] = answer;
+    oaoStack.splice((index-1), 2);
+    updateDisplay(1);
+  }
 }
 
 function multiply(index) { //find number before and after add in OaO array and multiply them and shrink array 3-1
