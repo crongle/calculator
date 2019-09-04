@@ -9,6 +9,8 @@ let n = 1;
 function operate() { // Performs full calculation on oao stack, BIDMAS order of operations followed
   clearLeadingOperator()
   joinNumbers();
+  leadingMinus();
+
   let i = 1;
 
   for  (i = 1; i<=oaoStack.length; i++) {
@@ -117,21 +119,28 @@ function clearStack() { // Clears display and current OaO stack
   updateDisplay(1);
 }
 
-function backspace() { // Removes previous number key or operator entry from display and OaO stack
+function backspace() { // Removes previous number key or operator entry from display and oao stack
   oaoStack.splice((oaoStack.length-1), 2 );
   updateDisplay(1);
 }
 
-function clearLeadingOperator() {
-  let reg = /[X+\/]/;
+function clearLeadingOperator() { // Removes erroneous or non viable operators from the start of a calculation
+  let reg = /[X+\/]/; // Excludes minus operator
   while (reg.test(oaoStack[0])) {
+    oaoStack.shift();
+  }
+}
+
+function leadingMinus() { // Ensures negative numbers at start of calculation are properly stored in oao stack
+  if (oaoStack[0] == "-") {
+    oaoStack[1] = (oaoStack[1] * -1);
     oaoStack.shift();
   }
 }
 
 // Display functions
 
-function updateDisplay(isItIntial) { //Called on any calculation update to output current OaO array
+function updateDisplay(isItIntial) { // Called on any calculation update to output current OaO array
   const container = document.querySelector(".display"); // Locating where the out put is going to be on the page
   let child = document.getElementsByClassName("child");
   let i = 0;
