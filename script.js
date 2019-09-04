@@ -6,15 +6,38 @@ let n = 1;
 
 // MAIN FUNCTION
 
-function operate() { // Performs full calculation on oao stack
+function operate() { // Performs full calculation on oao stack, BIDMAS order of operations followed
+  clearLeadingOperator()
   joinNumbers();
   let i = 1;
 
-  for  (i==1; i<=oaoStack.length; i++) { if (oaoStack[i] == "/") {divide(i);}} i = 1; // Makes BIDMAS rule followed when calculating
-  for  (i==1; i<=oaoStack.length; i++) { if (oaoStack[i] == "X") {multiply(i);}} i = 1;
-  for  (i==1; i<=oaoStack.length; i++) { if (oaoStack[i] == "+") {add(i);}} i = 1;
-  for  (i==1; i<=oaoStack.length; i++) { if (oaoStack[i] == "-") {subtract(i);}} i = 1;
+  for  (i = 1; i<=oaoStack.length; i++) {
+    if (oaoStack[i] == "/") {
+      divide(i);
+      i -= 1;
+    }
+  }
 
+  for  (i = 1; i<=oaoStack.length; i++) {
+    if (oaoStack[i] == "X") {
+      multiply(i);
+      i -= 1;
+    }
+  }
+
+  for  (i = 1; i<=oaoStack.length; i++) {
+    if (oaoStack[i] == "+") {
+      add(i);
+      i -= 1;
+    }
+  }
+
+  for  (i = 1; i<=oaoStack.length; i++) {
+    if (oaoStack[i] == "-") {
+      subtract(i);
+      i -= 1;
+    }
+  }
 }
 
 // Main 4 arithmatic operators
@@ -43,8 +66,8 @@ function multiply(index) { // Find number before and after add in OaO array and 
 
 function add(index) { // Find number before and after add in OaO array and add them and shrink array 3to1
   let answer = oaoStack[index-1] + oaoStack[index+1];
-  oaoStack[index+1] = answer;
-  oaoStack.splice((index-1), 2);
+  oaoStack[index-1] = answer;
+  oaoStack.splice((index), 2);
   updateDisplay(1);
 }
 
@@ -97,6 +120,13 @@ function clearStack() { // Clears display and current OaO stack
 function backspace() { // Removes previous number key or operator entry from display and OaO stack
   oaoStack.splice((oaoStack.length-1), 2 );
   updateDisplay(1);
+}
+
+function clearLeadingOperator() {
+  let reg = /[X+\/]/;
+  while (reg.test(oaoStack[0])) {
+    oaoStack.shift();
+  }
 }
 
 // Display functions
