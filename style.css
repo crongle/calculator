@@ -62,12 +62,22 @@ h1.main-heading {
   background-color: rgba(14, 77, 87, 0.5);
 }
 
+.operator:active {
+  background-color: rgba(14, 77, 87, 0.6);
+}
+
 .number {
   display: flex;
   align-items: center;
   justify-content: center;
   background-color: rgba(14, 77, 87, 0.3);
 }
+
+.number:active {
+  background-color: rgba(14, 77, 87, 0.4);
+}
+
+
 
 .equals {
   grid-row: 5 / 7;

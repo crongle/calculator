@@ -1,12 +1,12 @@
-// variables
+// Global variables
 
-let oaoStack = [];
+let oaoStack = []; // Initialises Operator and Operand stack
 let n = 1;
     x = 0;
 
 // MAIN FUNCTION
 
-function operate() { // Performs full calculation on OaO stack
+function operate() { // Performs full calculation on oao stack
   joinNumbers();
   let i = 1;
 
@@ -19,8 +19,8 @@ function operate() { // Performs full calculation on OaO stack
 
 // Main 4 arithmatic operators
 
-function divide(index) { //find number before and after add in OaO array and divide first by last and shrink array 3-1
-  if (oaoStack[index+1]==0) {
+function divide(index) { // Find number before and after add in OaO array and divide first by last and shrink array 3to1
+  if (oaoStack[index+1]==0) { // Checks if user is diving my something other than zero
     clearStack();
     oaoStack[0] = "Impossible!";
     updateDisplay(1);
@@ -34,21 +34,21 @@ function divide(index) { //find number before and after add in OaO array and div
   }
 }
 
-function multiply(index) { //find number before and after add in OaO array and multiply them and shrink array 3-1
+function multiply(index) { // Find number before and after add in OaO array and multiply them and shrink array 3to1
   let answer = oaoStack[index-1] * oaoStack[index+1];
   oaoStack[index+1] = answer;
   oaoStack.splice((index-1), 2);
   updateDisplay(1);
 }
 
-function add(index) { //find number before and after add in OaO array and add them and shrink array 3-1
+function add(index) { // Find number before and after add in OaO array and add them and shrink array 3to1
   let answer = oaoStack[index-1] + oaoStack[index+1];
   oaoStack[index+1] = answer;
   oaoStack.splice((index-1), 2);
   updateDisplay(1);
 }
 
-function subtract(index) { //find number before and after add in OaO array and subtract them and shrink array 3-1
+function subtract(index) { // Find number before and after add in OaO array and subtract them and shrink array 3to1
   let answer = oaoStack[index-1] - oaoStack[index+1];
   oaoStack[index+1] = answer;
   oaoStack.splice((index-1), 2);
@@ -72,7 +72,7 @@ function joinNumbers() { // Join together concurrent digits in oaoStack to form 
   for (x==0; x<=z; x++) {
     z = oaoStack.length;
 
-    if (numCheck.test(oaoStack[x]) || oaoStack[x] == ".") { //Check if a numerical digit or decimal point
+    if (numCheck.test(oaoStack[x]) || oaoStack[x] == ".") { // Check if a numerical digit or decimal point
       sum += oaoStack[x].toString();
       digitCount += 1;
     }
@@ -82,36 +82,29 @@ function joinNumbers() { // Join together concurrent digits in oaoStack to form 
         oaoStack.splice((x-digitCount), digitCount-1);
         x = x - (digitCount-1); // Adjusts stepper for how many digits have been combined when comparing to array length
     }
-    sum = "";
+    sum = ""; // Reset sum and digit counter
     digitCount = 0;
    }
   }
-  x = 0;
+  x = 0; // Reset stepper
 }
 
-
 function clearStack() { // Clears display and current OaO stack
-  console.log(oaoStack);
   oaoStack.splice(0, oaoStack.length);
   updateDisplay(1);
 }
 
 function backspace() { // Removes previous number key or operator entry from display and OaO stack
-  console.log(oaoStack);
   oaoStack.splice((oaoStack.length-1), 2 );
   updateDisplay(1);
 }
-
-function decimalise() { // Takes numbers and decimal between operators and combines to floating point number in stack
-
-}
-
 
 // Display functions
 
 function updateDisplay(isItIntial) { //Called on any calculation update to output current OaO array
   const container = document.querySelector(".display"); // Locating where the out put is going to be on the page
   let child = document.getElementsByClassName("child");
+  let i = 0;
 
   let output = oaoStack.join("");
 
@@ -122,7 +115,7 @@ function updateDisplay(isItIntial) { //Called on any calculation update to outpu
     container.appendChild(displayOutput);
   }
   else {
-    while(child[0]) { // Removes the previous display output
+    while(child[0]) { // Loop removes the entirity of the previous display output
       child[0].parentNode.removeChild(child[0]);
     }
 
