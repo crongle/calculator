@@ -132,7 +132,6 @@ function clearLeadingOperator() { // Removes erroneous or non viable operators f
   }
 }
 
-
 function leadingMinus() { // Ensures negative numbers at start of calculation are properly stored in oao stack
   if (oaoStack[0] == "-") {
     oaoStack[1] = (oaoStack[1] * -1);
