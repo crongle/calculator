@@ -36,8 +36,8 @@ h1.main-heading {
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
-  font-size: 1.3vw;
-  width: 15%;
+  font-size: 1.3vh;
+  width: 60%;
   height: 60%;
   display: grid;
   grid-template-rows: 2fr repeat(5, 1fr);
@@ -45,6 +45,15 @@ h1.main-heading {
   grid-gap: 1px;
   padding: 1px;
 }
+
+@media all and (orientation:landscape) {
+  .calc-wrapper {
+    width: 15%;
+    height: 60%;
+    font-size: 1.3vw;
+  }
+}
+
 
 .display {
   font-size: 2em;
