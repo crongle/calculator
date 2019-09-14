@@ -36,13 +36,13 @@ h1.main-heading {
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
-  font-size: 1.3vh;
+  font-size: 3vh;
   width: 50vw;
   height: 100vw;
   display: grid;
   grid-template-rows: 2fr repeat(5, 1fr);
   grid-template-columns: repeat(4, 1fr);
-  grid-gap: 1px;
+  grid-gap: 2px;
   padding: 1px;
 }
 
@@ -54,15 +54,22 @@ h1.main-heading {
   }
 }
 
-
 .display {
-  font-size: 2em;
+  font-size: 4vh;
   display: flex;
   justify-content: flex-end;
   align-items: flex-end;
   grid-column: 1 / 5;
   background-color: rgba(14, 77, 87, 0.1);
+  padding-right: 3px;
 }
+
+@media all and (orientation:landscape) {
+  .display {
+    font-size: 2vw;
+  }
+}
+
 
 .operator {
   display: flex;
