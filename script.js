@@ -10,6 +10,7 @@ function operate() { // Performs full calculation on oao stack, BIDMAS order of 
   clearLeadingOperator()
   joinNumbers();
   negativeHandling();
+  plusHandling();
   leadingMinus();
 
   let i = 1;
@@ -146,6 +147,19 @@ function negativeHandling() {
   for (z = oaoStack.length - 2; z > 0; z--) {
     if (reg.test(oaoStack[z-1]) && (oaoStack[z] == "-") && (!isNaN(oaoStack[z+1]))) {
       oaoStack[z+1] = (oaoStack[z+1] * -1);
+      oaoStack.splice(z, 1);
+      z = oaoStack.length - 1;
+    }
+  }
+}
+
+function plusHandling() {
+  let z = oaoStack.length - 1;
+  let reg = /[X+-\/]/;
+
+  for (z = oaoStack.length - 2; z > 0; z--) {
+    if (reg.test(oaoStack[z-1]) && (oaoStack[z] == "+") && (!isNaN(oaoStack[z+1]))) {
+      oaoStack[z+1] = (oaoStack[z+1] * 1);
       oaoStack.splice(z, 1);
       z = oaoStack.length - 1;
     }
