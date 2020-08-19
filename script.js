@@ -23,7 +23,7 @@ function operate() { // Performs full calculation on oao stack, BIDMAS order of 
   }
 
   for  (i = 1; i<=oaoStack.length; i++) {
-    if (oaoStack[i] == "X") {
+    if (oaoStack[i] == "x") {
       multiply(i);
       i -= 1;
     }
@@ -127,7 +127,7 @@ function backspace() { // Removes previous number key or operator entry from dis
 }
 
 function clearLeadingOperator() { // Removes erroneous or non viable operators from the start of a calculation
-  let reg = /[X+\/]/; // Excludes minus operator
+  let reg = /[x+\/]/; // Excludes minus operator
   while (reg.test(oaoStack[0])) {
     oaoStack.shift();
   }
@@ -142,7 +142,7 @@ function leadingMinus() { // Ensures negative numbers at start of calculation ar
 
 function negativeHandling() {
   let z = oaoStack.length - 1;
-  let reg = /[X+-\/]/;
+  let reg = /[x+-\/]/;
 
   for (z = oaoStack.length - 2; z > 0; z--) {
     if (reg.test(oaoStack[z-1]) && (oaoStack[z] == "-") && (!isNaN(oaoStack[z+1]))) {
@@ -155,7 +155,7 @@ function negativeHandling() {
 
 function plusHandling() {
   let z = oaoStack.length - 1;
-  let reg = /[X+-\/]/;
+  let reg = /[x+-\/]/;
 
   for (z = oaoStack.length - 2; z > 0; z--) {
     if (reg.test(oaoStack[z-1]) && (oaoStack[z] == "+") && (!isNaN(oaoStack[z+1]))) {

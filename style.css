@@ -1,10 +1,11 @@
 /*--------------GENERAL------------------------------------------------------*/
+@import url('https://fonts.googleapis.com/css2?family=Rubik+Mono+One&display=swap');
 
 * {
   padding: 0;
   border: 0;
   margin: 0;
-  font-family: arial, sans-serif;
+  box-sizing: border-box;
 }
 
 html {
@@ -12,10 +13,17 @@ html {
 }
 
 body {
-  min-height: 100%;
   display: grid;
   grid-auto-rows: auto 1fr auto;
-  color: rgb(9, 90, 102);
+
+  min-height: 100%;
+
+  font-family: arial, sans-serif;
+
+  color: hsla(133, 35%,15%, 1);
+  background: #76b852;  /* fallback for old browsers */
+  background: -webkit-linear-gradient(to right, #8DC26F, #76b852);  /* Chrome 10-25, Safari 5.1-6 */
+  background: linear-gradient(to right, #8DC26F, #76b852); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
 }
 
 /*--------------HEADER-------------------------------------------------------*/
@@ -24,33 +32,37 @@ body {
 }
 
 h1.main-heading {
-  font-weight:1;
-  color: rgba(7, 38, 43, 0.8);
+  font-family: 'Rubik Mono One', sans-serif;
+  font-size: 8vh;
+  text-shadow: 3px 3px #FFF;
 }
-
 
 /*---------------BODY--------------------------------------------------------*/
 
 .calc-wrapper {
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  font-size: 3vh;
-  width: 50vw;
-  height: 100vw;
   display: grid;
   grid-template-rows: 2fr repeat(5, 1fr);
   grid-template-columns: repeat(4, 1fr);
   grid-gap: 2px;
-  padding: 1px;
-}
 
-@media all and (orientation:landscape) {
+  width: 80%;
+  height: 80%;
+  position: absolute;
+  transform: translate(-50%, -50%);
+  top: 50%;
+  left: 50%;
+  padding: 2px;
+  margin: 10px 0px;
+
+  font-size: 2em;
+
+  background: hsla(88, 100%, 91%, 1);
+  box-shadow: 2px 2px 15px hsla(133, 35%,15%, 1);
+}
+@media all and (min-width: 768px), (orientation: landscape) {
   .calc-wrapper {
-    width: 15vw;
-    height: 30vw;
-    font-size: 1.3vw;
+    max-width: 20%;
+    max-height: 70%;
   }
 }
 
@@ -60,40 +72,31 @@ h1.main-heading {
   justify-content: flex-end;
   align-items: flex-end;
   grid-column: 1 / 5;
-  background-color: rgba(14, 77, 87, 0.1);
+  background: #FFF;
   padding-right: 3px;
 }
-
-@media all and (orientation:landscape) {
-  .display {
-    font-size: 2vw;
-  }
-}
-
 
 .operator {
   display: flex;
   align-items: center;
   justify-content: center;
-  background-color: rgba(14, 77, 87, 0.5);
+  background: hsla(139, 45%, 57%, 1)
 }
 
 .operator:active {
-  background-color: rgba(14, 77, 87, 0.6);
+  background-color: hsla(139, 45%, 40%, 1);
 }
 
 .number {
   display: flex;
   align-items: center;
   justify-content: center;
-  background-color: rgba(14, 77, 87, 0.3);
+  background: hsla(130, 53%, 57%, 0.3);
 }
 
 .number:active {
-  background-color: rgba(14, 77, 87, 0.4);
+  background: hsla(130, 53%, 45%, 0.3);
 }
-
-
 
 .equals {
   grid-row: 5 / 7;
@@ -108,6 +111,7 @@ h1.main-heading {
   font-size: 0.5em;
   color: rgba(7, 38, 43, 0.3);
   padding-bottom: 10px;
+  max-height: 10%;
 }
 
 .github-link {

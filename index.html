@@ -5,23 +5,24 @@
     calculator
   </title>
   <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel="stylesheet" type="text/css" href="style.css">
   <script src="script.js"></script>
 </head>
 
 <body>
   <div class="header">
-    <h1 class="main-heading">calculator</h1>
+    <h1 class="main-heading">Calcio</h1>
   </div>
 
   <div class="calc-wrapper">
 
     <div class="display"></div>
 
-    <div class="clear operator" onclick="clearStack()">C</div>
+    <div class="clear operator" onclick="clearStack()">c</div>
     <div class="divide operator" onclick="addToStack(&quot;/&quot;)">/</div>
-    <div class="multiply  operator" onclick="addToStack(&quot;X&quot;)">X</div>
-    <div class="backspace  operator" onclick="backspace()">&#9003;</div>
+    <div class="multiply  operator" onclick="addToStack(&quot;x&quot;)">x</div>
+    <div class="backspace  operator" onclick="backspace()">&hookleftarrow;</div>
 
     <div class="seven number" onclick="addToStack(7)">7</div>
     <div class="eight number" onclick="addToStack(8)">8</div>
